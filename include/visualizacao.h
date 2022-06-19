@@ -16,5 +16,4 @@ void visualizarMatrizEmCoordenada();
 void visualizarMatrizEmValores();
 void visualizarMatrizSoPrimos(ll_primos* controle);
 
-
 #endif /* INCLUDE_VISUALIZACAO_H_ */

@@ -25,3 +25,21 @@ void pararCronometro(cronometro* cron) {
 	gettimeofday(&cron->tvfinal, NULL);
 	debug("Cronômetro terminado\n");
 }
+
+long cronParaSec(cronometro* cron) {
+	return cronParaLong(cron)/1000000;
+}
+
+long cronParaMSec(cronometro* cron) {
+	return (cronParaLong(cron)%1000000/1000);
+}
+
+long cronParaUSec(cronometro* cron) {
+	if (cronParaLong(cron) < 1000) {
+		return cronParaLong(cron);
+	}
+	return cronParaLong(cron)-(cronParaMSec(cron)*1000)-(cronParaSec(cron)*1000000);
+}
+
+
+

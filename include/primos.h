@@ -40,4 +40,6 @@ int juntarListas(ll_primos* lista_geral, ll_primos* lista_add);
 
 int ehPrimoSL(int numero);
 
+primo* proximoPrimo(primo* act_primo);
+
 #endif /* INCLUDE_PRIMOS_H_ */

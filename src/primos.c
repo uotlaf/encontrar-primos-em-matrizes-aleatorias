@@ -118,3 +118,17 @@ int ehPrimoPedro(int n) {
 	    }
 	    return TRUE;
 }
+
+long coordenadaToIndex(primo* node, long tamanho_da_matriz) {
+	return (node->x * tamanho_da_matriz) + node->y;
+}
+
+primo* proximoPrimo(primo* act_primo) {
+    if (act_primo == NULL) {
+        return NULL;
+    }
+    if (act_primo->proximo != NULL) {
+        return act_primo->proximo;
+    }
+    return NULL;
+}

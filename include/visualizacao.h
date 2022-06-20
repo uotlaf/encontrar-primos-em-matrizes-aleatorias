@@ -9,6 +9,7 @@
 #define INCLUDE_VISUALIZACAO_H_
 
 #include "primos.h"
+#include <stdio.h>
 
 extern int matriz[];
 

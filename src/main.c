@@ -70,5 +70,10 @@ int main() {
 			cronParaMSec(cronSepararPrimos),
 			cronParaUSec(cronSepararPrimos));
 
+#if THREADS == 1 && IMPRIMIR_MATRIZ == 1
+	visualizarMatrizEmCoordenada();
+	visualizarMatrizEmValores();
+	visualizarMatrizSoPrimos(lista_primos);
+#endif
 	return 0;
 }

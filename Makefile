@@ -1,8 +1,9 @@
 
 # Configuração do programa
-ORDEM_MATRIZ = 10000
-THREADS=100
-SEED=4 #457155320
+ORDEM_MATRIZ = 20000
+THREADS=4
+IMPRIMIR_MATRIZ=0
+SEED=457155320
 USAR_MATRIZ_ALEATORIA = 1
 RANDOM_MAX=29999
 VERNOFINAL=0
@@ -14,9 +15,9 @@ PROJECT_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 OUT     = ./out
 SOURCE  = ./src
 INCLUDE = ./include
-OBJECTS = $(SOURCE)/tempo.c $(SOURCE)/main.c  $(SOURCE)/primos.c $(SOURCE)/matriz.c $(SOURCE)/handlers/thread.c #$(SOURCE)/visualizacao.c
+OBJECTS = $(SOURCE)/tempo.c $(SOURCE)/main.c  $(SOURCE)/primos.c $(SOURCE)/matriz.c $(SOURCE)/handlers/thread.c $(SOURCE)/visualizacao.c
 
-LIBS = -lm
+LIBS = -lm -pg
 
 CFLAGS  = $(LIBS) \
 	-DSEED=$(SEED) \
@@ -25,6 +26,7 @@ CFLAGS  = $(LIBS) \
 	-DVERNOFINAL=$(VERNOFINAL) \
 	-DCONF_USAR_MATRIZ_ALEATORIA=$(USAR_MATRIZ_ALEATORIA) \
 	-DRANDOM_MAX_CAP=$(RANDOM_MAX) \
+	-DIMPRIMIR_MATRIZ=$(IMPRIMIR_MATRIZ) \
 	-DCOLOR_DEBUG \
 	-DTRUE=1 \
 	-DFALSE=0
@@ -56,7 +58,7 @@ endif
 all: program # link
 
 program:
-	$(CC) -o $(BUILD_DIR)/main -I $(INCLUDE) $(CFLAGS) $(OBJECTS)
+	$(CC) -o $(BUILD_DIR)/main -I $(INCLUDE) $(CFLAGS) $(OBJECTS) -lm -pthread
 
 	
 clean:

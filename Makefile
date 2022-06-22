@@ -1,7 +1,6 @@
-
 # Configuração do programa
-ORDEM_MATRIZ = 20000
-THREADS=4
+ORDEM_MATRIZ = 30000
+THREADS=1
 IMPRIMIR_MATRIZ=0
 SEED=457155320
 USAR_MATRIZ_ALEATORIA = 1
@@ -32,7 +31,7 @@ CFLAGS  = $(LIBS) \
 	-DFALSE=0
 
 ifeq ($(BUILD_MODE),debug)
-	CFLAGS += -fdiagnostics-color=always -pg -g -Werror 
+	CFLAGS += -fdiagnostics-color=always -pg -g -mcmodel=medium
 	BUILD_DIR=$(PROJECT_ROOT)/build/debug
 else ifeq ($(BUILD_MODE),release)
 	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
@@ -41,7 +40,8 @@ else ifeq ($(BUILD_MODE),run) # Eclipse run
 	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
 	BUILD_DIR=$(PROJECT_ROOT)/build/debug
 else
-    $(error Build mode $(BUILD_MODE) not supported by this Makefile)
+	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
+        BUILD_DIR=$(PROJECT_ROOT)/build/release
 endif
 
 ifeq ($(DEBUGLEVEL), 1)
@@ -58,6 +58,7 @@ endif
 all: program # link
 
 program:
+	@mkdir -p $(BUILD_DIR)
 	$(CC) -o $(BUILD_DIR)/main -I $(INCLUDE) $(CFLAGS) $(OBJECTS) -lm -pthread
 
 	

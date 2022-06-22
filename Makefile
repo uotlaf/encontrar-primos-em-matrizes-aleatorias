@@ -34,13 +34,13 @@ ifeq ($(BUILD_MODE),debug)
 	CFLAGS += -fdiagnostics-color=always -pg -g -mcmodel=medium
 	BUILD_DIR=$(PROJECT_ROOT)/build/debug
 else ifeq ($(BUILD_MODE),release)
-	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
+	CFLAGS += -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
 	BUILD_DIR=$(PROJECT_ROOT)/build/release
 else ifeq ($(BUILD_MODE),run) # Eclipse run
-	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
+	CFLAGS += -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
 	BUILD_DIR=$(PROJECT_ROOT)/build/debug
 else
-	CFLAGS += -march=native -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
+	CFLAGS += -O3 -fgraphite-identity -floop-nest-optimize -fdevirtualize-at-ltrans -fipa-pta -fno-semantic-interposition -flto=4
         BUILD_DIR=$(PROJECT_ROOT)/build/release
 endif
 
